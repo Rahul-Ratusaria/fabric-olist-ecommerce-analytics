@@ -221,7 +221,7 @@ Temporary credentials removed
 
 The notebook validates that all nine expected CSV files are available before the ingestion phase is considered successful.
 
-![Olist source files stored in OneLake](screenshots/03-data-ingestion/02-source-files-in-onelake.png)
+![Olist source files stored in OneLake](screenshots\03-data-ingestion\source-files-in-onelake.png)
 
 Detailed implementation is available in:
 

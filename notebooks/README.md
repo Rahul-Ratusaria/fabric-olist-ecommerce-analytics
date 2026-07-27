@@ -9,7 +9,7 @@ This folder stores exported Microsoft Fabric notebooks used for ingestion, profi
 | Sequence | Fabric notebook | Local export | Purpose | Status |
 |---:|---|---|---|---|
 | 1 | `nb_00_ingest_olist` | `nb_00_ingest_olist.ipynb` | Download and validate the Olist dataset | Completed |
-| 2 | `nb_01_profile_sources` | `nb_01_profile_sources.ipynb` | Profile raw source files and identify data-quality issues | Planned |
+| 2 | `nb_01_profile_sources` | `nb_01_profile_sources.ipynb` | Profile raw source files and identify data-quality issues | In Progress |
 | 3 | `nb_02_load_bronze` | `nb_02_load_bronze.ipynb` | Load raw CSV data into Bronze Delta tables | Planned |
 | 4 | `nb_03_transform_silver_core` | `nb_03_transform_silver_core.ipynb` | Transform orders, items, customers and products | Planned |
 | 5 | `nb_04_transform_silver_supporting` | `nb_04_transform_silver_supporting.ipynb` | Transform sellers, payments, reviews and geolocation | Planned |
@@ -113,3 +113,27 @@ The ingestion notebook:
 - verifies the expected nine source files;
 - generates a source inventory;
 - deletes temporary credentials.
+
+
+### `nb_01_profile_sources.ipynb`
+
+Status: **In Progress**
+
+The profiling notebook currently generates:
+
+- table-level row and column counts;
+- column data types and cardinality;
+- null and non-null statistics;
+- exact-row duplicate counts;
+- business-key duplicate analysis;
+- business-key completeness checks;
+- profiling execution metadata.
+
+Generated Delta tables:
+
+- `profile_table_summary`
+- `profile_column_summary`
+- `profile_null_summary`
+- `profile_duplicate_summary`
+- `profile_key_quality_summary`
+- `profile_run_history`
