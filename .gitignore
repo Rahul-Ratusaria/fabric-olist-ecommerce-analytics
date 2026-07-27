@@ -1,4 +1,10 @@
 # Byte-compiled / optimized / DLL files
+
+kaggle.json
+secrets/
+private/
+
+
 __pycache__/
 *.py[codz]
 *$py.class
