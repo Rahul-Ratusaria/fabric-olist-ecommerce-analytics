@@ -15,7 +15,7 @@ The documents are numbered in the order in which the project is implemented.
 | `03_data_ingestion.md` | Kaggle-to-OneLake ingestion and validation | Completed |
 | `04_source_profiling.md` | Schema, null, duplicate and source-quality analysis | Completed |
 | `05_bronze_layer.md` | Raw Delta-table implementation and ingestion audit | Completed |
-| `06_silver_layer.md` | Cleaning, standardization and enrichment rules | Planned |
+| `06_silver_layer.md` | Cleaning, standardization and enrichment rules | In Progress |
 | `07_data_quality.md` | Automated tests, quarantine and reconciliation | Planned |
 | `08_gold_model.md` | Fact tables, dimensions, grains and features | Planned |
 | `09_pipeline_orchestration.md` | Fabric Data Factory pipeline design | Planned |
