@@ -18,7 +18,7 @@ The project uses the public Brazilian E-Commerce Dataset by Olist and demonstrat
 | Kaggle-to-OneLake ingestion | Completed |
 | Source-data validation | Completed |
 | Source profiling | Completed |
-| Bronze layer | Not started |
+| Bronze layer | Completed |
 | Silver layer | Not started |
 | Data-quality framework | Not started |
 | Gold dimensional model | Not started |
@@ -249,13 +249,20 @@ This is a learning implementation. A production solution would normally use a ma
 
 ### Bronze Layer
 
-The Bronze layer will:
+All nine source files are loaded into managed Delta tables while preserving raw source values.
 
-- preserve raw source column values;
-- load data primarily as strings;
-- add batch and ingestion metadata;
-- create source-to-target audit records;
-- maintain reproducibility.
+The Bronze framework adds:
+
+- ingestion run ID;
+- source filename;
+- ingestion timestamp;
+- load type;
+- deterministic SHA-256 record hash;
+- source-to-target reconciliation.
+
+![Bronze tables](screenshots/05-bronze-layer/01-bronze-tables.png)
+
+Detailed implementation: [Bronze Layer Documentation](docs/05_bronze_layer.md)
 
 ### Silver Layer
 

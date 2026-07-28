@@ -10,7 +10,7 @@ This folder stores exported Microsoft Fabric notebooks used for ingestion, profi
 |---:|---|---|---|---|
 | 1 | `nb_00_ingest_olist` | `nb_00_ingest_olist.ipynb` | Download and validate the Olist dataset | Completed |
 | 2 | `nb_01_profile_sources` | `nb_01_profile_sources.ipynb` | Profile raw source files and identify data-quality issues | Completed |
-| 3 | `nb_02_load_bronze` | `nb_02_load_bronze.ipynb` | Load raw CSV data into Bronze Delta tables | In-Progress |
+| 3 | `nb_02_load_bronze` | `nb_02_load_bronze.ipynb` | Load raw CSV data into Bronze Delta tables | Completed |
 | 4 | `nb_03_transform_silver_core` | `nb_03_transform_silver_core.ipynb` | Transform orders, items, customers and products | Planned |
 | 5 | `nb_04_transform_silver_supporting` | `nb_04_transform_silver_supporting.ipynb` | Transform sellers, payments, reviews and geolocation | Planned |
 | 6 | `nb_05_data_quality` | `nb_05_data_quality.ipynb` | Execute automated data-quality and reconciliation tests | Planned |
@@ -151,3 +151,22 @@ The notebook also validates source referential integrity across:
 - order items and sellers;
 - payments and orders;
 - reviews and orders.
+
+
+## `nb_02_load_bronze.ipynb`
+
+The bronze notebook:
+
+- dynamically loads all nine source CSV files;
+- preserves all source fields as strings;
+- adds technical lineage metadata;
+- generates deterministic SHA-256 row hashes;
+- writes managed Delta tables;
+- reconciles source and target row counts;
+- stores table-level and run-level audit history.
+
+Generated tables:
+
+- nine `bronze_*` tables;
+- `audit_bronze_load`;
+- `audit_bronze_run_history`
