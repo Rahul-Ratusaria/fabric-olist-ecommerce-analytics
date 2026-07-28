@@ -18,6 +18,10 @@ The results are persisted as Delta tables:
 - profile_duplicate_summary
 - profile_key_quality_summary
 - profile_run_history
+- profile_numeric_summary
+- profile_datetime_summary
+- profile_categorical_summary
+- profile_business_rule_summary
 
 ## Null Analysis
 
@@ -73,3 +77,67 @@ Run metadata is stored in:
 - `profile_run_history`
 
 ![Profiling run history](../screenshots/04-source-profiling/06-profile-run-history.png)
+
+## Numeric Profiling
+
+The framework automatically identifies numeric columns and computes:
+
+- Minimum
+- Maximum
+- Mean
+- Standard deviation
+
+Results:
+
+- `profile_numeric_summary`
+
+![Numeric profile](../screenshots/04-source-profiling/07-numeric-profile.png)
+
+## Datetime Profiling
+
+The framework identifies timestamp columns and computes:
+
+- Earliest timestamp
+- Latest timestamp
+- Invalid timestamp count
+
+Results:
+
+- `profile_datetime_summary`
+
+![Datetime profile](../screenshots/04-source-profiling/08-date-profile.png)
+
+## Categorical Profiling
+
+The framework profiles all string columns by calculating:
+
+- Distinct values
+- Most frequent value
+- Frequency of the most common value
+
+Results:
+
+- `profile_categorical_summary`
+
+![Categorical profile](../screenshots/04-source-profiling/09-categorical-profile.png)
+
+## Business-Rule Validation
+
+The profiling framework validates source records against explicit business conditions.
+
+Initial rules include:
+
+- review score must be between 1 and 5;
+- item price must be non-negative;
+- freight value must be non-negative;
+- payment value must be non-negative;
+- payment instalments must be non-negative;
+- order status must belong to the expected domain.
+
+Results are stored in:
+
+- `profile_business_rule_summary`
+
+Missing values are reported separately from business-rule failures.
+
+![Business-rule profile](../screenshots/04-source-profiling/10-business-rule-profile.png)
