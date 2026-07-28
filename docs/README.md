@@ -13,7 +13,7 @@ The documents are numbered in the order in which the project is implemented.
 | `01_project_charter.md` | Business problem, objectives, stakeholders and success criteria | Completed |
 | `02_fabric_setup.md` | Fabric trial, workspace, Lakehouse and OneLake setup | Completed |
 | `03_data_ingestion.md` | Kaggle-to-OneLake ingestion and validation | Completed |
-| `04_source_profiling.md` | Schema, null, duplicate and source-quality analysis | Planned |
+| `04_source_profiling.md` | Schema, null, duplicate and source-quality analysis | Completed |
 | `05_bronze_layer.md` | Raw Delta-table implementation and ingestion audit | Planned |
 | `06_silver_layer.md` | Cleaning, standardization and enrichment rules | Planned |
 | `07_data_quality.md` | Automated tests, quarantine and reconciliation | Planned |

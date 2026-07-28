@@ -17,7 +17,7 @@ The project uses the public Brazilian E-Commerce Dataset by Olist and demonstrat
 | Lakehouse and OneLake setup | Completed |
 | Kaggle-to-OneLake ingestion | Completed |
 | Source-data validation | Completed |
-| Source profiling | Not started |
+| Source profiling | Completed |
 | Bronze layer | Not started |
 | Silver layer | Not started |
 | Data-quality framework | Not started |

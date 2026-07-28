@@ -22,6 +22,7 @@ The results are persisted as Delta tables:
 - profile_datetime_summary
 - profile_categorical_summary
 - profile_business_rule_summary
+- profile_relationship_summary
 
 ## Null Analysis
 
@@ -141,3 +142,59 @@ Results are stored in:
 Missing values are reported separately from business-rule failures.
 
 ![Business-rule profile](../screenshots/04-source-profiling/10-business-rule-profile.png)
+
+## Referential-Integrity Profiling
+
+The profiling framework validates expected relationships between source datasets.
+
+Relationships tested:
+
+- orders to customers;
+- order items to orders;
+- order items to products;
+- order items to sellers;
+- payments to orders;
+- reviews to orders.
+
+The framework records:
+
+- total child rows;
+- rows eligible for relationship evaluation;
+- child rows with missing keys;
+- matched rows;
+- orphan rows;
+- orphan percentage;
+- relationship status.
+
+A Spark left anti join is used to identify child records that do not have a matching parent key.
+
+Results are stored in:
+
+- `profile_relationship_summary`
+
+Missing child keys are reported separately from orphan keys.
+
+![Relationship profile](../screenshots/04-source-profiling/11-relationship-profile.png)
+
+## Dataset Health Overview
+
+A consolidated profiling dataset combines all profiling metrics into a single executive summary.
+
+Metrics include:
+
+- Row count
+- Column count
+- Null analysis
+- Duplicate analysis
+- Missing business keys
+- Business-rule failures
+- Relationship failures
+- Overall dataset health
+
+Results are stored in:
+
+profile_overview
+
+This table serves as the primary data source for the Data Quality dashboard.
+
+![Dataset Health Overview](../screenshots/04-source-profiling/12-profile-overview.png)

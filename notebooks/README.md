@@ -9,7 +9,7 @@ This folder stores exported Microsoft Fabric notebooks used for ingestion, profi
 | Sequence | Fabric notebook | Local export | Purpose | Status |
 |---:|---|---|---|---|
 | 1 | `nb_00_ingest_olist` | `nb_00_ingest_olist.ipynb` | Download and validate the Olist dataset | Completed |
-| 2 | `nb_01_profile_sources` | `nb_01_profile_sources.ipynb` | Profile raw source files and identify data-quality issues | In Progress |
+| 2 | `nb_01_profile_sources` | `nb_01_profile_sources.ipynb` | Profile raw source files and identify data-quality issues | Completed |
 | 3 | `nb_02_load_bronze` | `nb_02_load_bronze.ipynb` | Load raw CSV data into Bronze Delta tables | Planned |
 | 4 | `nb_03_transform_silver_core` | `nb_03_transform_silver_core.ipynb` | Transform orders, items, customers and products | Planned |
 | 5 | `nb_04_transform_silver_supporting` | `nb_04_transform_silver_supporting.ipynb` | Transform sellers, payments, reviews and geolocation | Planned |
@@ -137,3 +137,17 @@ Generated Delta tables:
 - `profile_duplicate_summary`
 - `profile_key_quality_summary`
 - `profile_run_history`
+- `profile_numeric_summary`
+- `profile_datetime_summary`
+- `profile_categorical_summary`
+- `profile_business_rule_summary`
+- `profile_relationship_summary`
+
+The notebook also validates source referential integrity across:
+
+- orders and customers;
+- order items and orders;
+- order items and products;
+- order items and sellers;
+- payments and orders;
+- reviews and orders.
