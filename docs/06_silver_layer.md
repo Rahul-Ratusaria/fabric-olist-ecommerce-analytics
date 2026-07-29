@@ -84,3 +84,29 @@ Results are stored in:
 ![Quarantine summary](../screenshots/06-silver-layer/04-core-quarantine-summary.png)
 
 ![Silver audit](../screenshots/06-silver-layer/05-core-silver-audit.png)
+
+## Supporting Silver Tables
+
+The supporting transformation process creates:
+
+- `silver_sellers`;
+- `silver_order_payments`;
+- `silver_order_reviews`;
+- `silver_category_translation`;
+- `silver_geolocation`;
+- `silver_geolocation_zip`.
+
+## Seller Processing
+
+Seller identifiers and geographical attributes are standardized at one row per seller.
+
+Critical invalid identifiers and ZIP prefixes are routed to `quarantine_sellers`.
+
+## Payment Processing
+
+Payments are retained at:
+
+```text
+order_id + payment_sequence
+```
+
