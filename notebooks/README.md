@@ -170,3 +170,22 @@ Generated tables:
 - nine `bronze_*` tables;
 - `audit_bronze_load`;
 - `audit_bronze_run_history`
+
+## `nb_03_build_silver.ipynb`
+
+Status: **In Progress**
+
+Core transformations completed:
+
+- customers;
+- orders;
+- order items;
+- products.
+
+Current outputs:
+
+- four `silver_*` tables;
+- four `quarantine_*` tables;
+- `audit_silver_load`.
+
+The notebook performs explicit data-type conversion, deterministic deduplication, quality flagging, quarantine routing, feature engineering and source-to-target reconciliation.
