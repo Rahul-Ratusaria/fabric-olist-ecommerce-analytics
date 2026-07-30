@@ -9,7 +9,7 @@ This folder contains all Microsoft Fabric notebooks used in the Medallion Archit
 | nb_01_profile_sources.ipynb | Source profiling | Completed |
 | nb_02_load_bronze.ipynb | Bronze ingestion | Completed |
 | nb_03_build_silver.ipynb | Silver transformation | Completed |
-| nb_04_build_gold.ipynb | Gold dimensional model | Planned |
+| nb_04_build_gold.ipynb | Gold dimensional model | In Progress |
 
 ---
 
@@ -86,3 +86,21 @@ Outputs
 - audit_silver_load
 - audit_silver_relationship
 - audit_silver_run_history
+
+---
+
+## nb_04_build_gold.ipynb
+
+Status: **In Progress**
+
+The Gold notebook will create:
+
+- `dim_date`;
+- `dim_customer`;
+- `dim_product`;
+- `dim_seller`;
+- `fact_order`;
+- `fact_order_item`;
+- `fact_payment`
+
+The dimensional model uses explicit grains, deterministic surrogate keys and separate facts for order, item and payment analysis.

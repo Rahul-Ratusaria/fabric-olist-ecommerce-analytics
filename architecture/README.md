@@ -30,3 +30,11 @@ Current diagrams include
 - Delta Tables
 - SQL Analytics Endpoint
 - Power BI
+
+## Gold Star Schema
+
+The planned Gold model contains four dimensions and three fact tables.
+
+![Gold star schema](images/star_schema.png)
+
+The facts remain separate to prevent cross-grain multiplication between order items and payment records.
