@@ -93,14 +93,14 @@ Outputs
 
 Status: **In Progress**
 
-The Gold notebook will create:
+Completed outputs:
 
 - `dim_date`;
 - `dim_customer`;
 - `dim_product`;
 - `dim_seller`;
-- `fact_order`;
-- `fact_order_item`;
-- `fact_payment`
+- `audit_gold_dimension_load`.
 
-The dimensional model uses explicit grains, deterministic surrogate keys and separate facts for order, item and payment analysis.
+The notebook currently generates deterministic surrogate keys, enriches customer and seller geography, materializes product attributes and validates dimensional uniqueness.
+
+Fact tables are still pending.

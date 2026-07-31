@@ -61,6 +61,97 @@ Fact tables retain measurable business events at explicitly documented grains.
 - GMV is not interpreted as profit.
 - required filter attributes are materialized in the gold dimension.
 
-## Status
+## Implemented Dimensions
 
-Design completed. Implementation in progress.
+The Gold implementation currently contains:
+
+- `dim_date`;
+- `dim_customer`;
+- `dim_product`;
+- `dim_seller`.
+
+## Date Dimension
+
+`dim_date` contains one row per calendar date across the full analytical date range found in the Silver tables.
+
+Attributes include:
+
+- year;
+- quarter;
+- month;
+- week;
+- day;
+- weekday;
+- weekend flag;
+- year-month sorting fields.
+
+The integer `date_key` uses the `YYYYMMDD` format.
+
+## Customer Dimension
+
+`dim_customer` contains one row per `customer_id`.
+
+It retains `customer_unique_id` for persistent-customer analysis.
+
+Enrichments include:
+
+- first order date;
+- last order date;
+- lifetime distinct order count;
+- new/repeat classification;
+- ZIP-level coordinates.
+
+## Product Dimension
+
+`dim_product` contains one row per product.
+
+It includes:
+
+- Portuguese category;
+- English category;
+- translation status;
+- descriptive text-length attributes;
+- photo count;
+- weight;
+- dimensions;
+- volume;
+- density.
+
+## Seller Dimension
+
+`dim_seller` contains one row per seller and includes seller geography and ZIP-level coordinates.
+
+## Surrogate Keys
+
+Integer surrogate keys are generated deterministically by ordering the natural key and assigning `row_number()`.
+
+This approach is suitable for the static portfolio dataset.
+
+A production incremental solution would use a persistent key-mapping strategy, identity key or merge process.
+
+## Dimension Validation
+
+Every dimension is tested for:
+
+- expected row count;
+- natural-key uniqueness;
+- surrogate-key uniqueness;
+- null surrogate keys.
+
+Results are stored in:
+
+- `audit_gold_dimension_load`
+
+## Evidence
+
+![Gold dimensions](../screenshots/07-gold-layer/01-gold-dimensions.png)
+
+![Date dimension](../screenshots/07-gold-layer/02-date-dimension.png)
+
+![Customer dimension](../screenshots/07-gold-layer/03-customer-dimension.png)
+
+![Product dimension](../screenshots/07-gold-layer/04-product-dimension.png)
+
+![Seller dimension](../screenshots/07-gold-layer/05-seller-dimension.png)
+
+![Dimension audit](../screenshots/07-gold-layer/06-dimension-audit.png)
