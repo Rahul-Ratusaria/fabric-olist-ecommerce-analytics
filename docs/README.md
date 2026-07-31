@@ -8,7 +8,8 @@ This folder contains detailed implementation documentation for each stage of the
 | 05_bronze_layer.md | Bronze layer implementation | Completed |
 | 06_silver_layer.md | Silver layer implementation | Completed |
 | 07_gold_layer.md | Gold dimensional model | Completed |
-| 08_dashboard.md | Power BI dashboard | Planned |
+| 08_pipeline.md | Microsoft Fabric Pipeline orchestration | In Progress |
+| 09_dashboard.md | Power BI dashboard | Planned |
 
 ---
 
