@@ -86,7 +86,7 @@ fabric-olist-analytics/
 | Source Profiling | ✅ Completed |
 | Bronze Layer | ✅ Completed |
 | Silver Layer | ✅ Completed |
-| Gold Layer | ⏳ Upcoming |
+| Gold Layer | ✅ Completed |
 | Semantic Model | ⏳ Upcoming |
 | Power BI Dashboard | ⏳ Upcoming |
 | CI/CD | ⏳ Upcoming |
@@ -196,15 +196,43 @@ docs/06_silver_layer.md
 
 ---
 
-# Upcoming Work
+## Gold Dimensional Model
 
-The next phase will implement the Gold Layer.
+The Gold layer reorganizes the validated Silver entities into a business-ready star schema.
+
+### Dimensions
+
+- `dim_date`
+- `dim_customer`
+- `dim_product`
+- `dim_seller`
+
+### Facts
+
+- `fact_order`
+- `fact_order_item`
+- `fact_payment`
+
+Each fact retains an explicit business grain. Order items and payments remain separate to prevent cross-grain value multiplication.
+
+The framework validates:
+
+- natural and surrogate-key uniqueness;
+- fact-table grains;
+- fact-to-dimension relationships;
+- Silver-to-Gold row counts;
+- GMV, freight and payment reconciliation.
+
+![Gold star schema](architecture/images/star_schema.png)
+
+![Gold facts](screenshots/07-gold-layer/07-gold-facts.png)
+
+Detailed implementation: [Gold Layer Documentation](docs/07_gold_layer.md)
+
+# Upcoming Work
 
 Planned deliverables include
 
-- Star Schema
-- Dimension Tables
-- Fact Tables
 - Incremental Loading
 - SQL Analytics Endpoint
 - Semantic Model
@@ -220,6 +248,7 @@ Planned deliverables include
 | docs/project_charter.md | Project objectives |
 | docs/05_bronze_layer.md | Bronze implementation |
 | docs/06_silver_layer.md | Silver implementation |
+| docs/07_gold_layer.md | Gold implementation |
 
 ---
 

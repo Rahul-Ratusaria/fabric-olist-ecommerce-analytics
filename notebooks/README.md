@@ -9,7 +9,7 @@ This folder contains all Microsoft Fabric notebooks used in the Medallion Archit
 | nb_01_profile_sources.ipynb | Source profiling | Completed |
 | nb_02_load_bronze.ipynb | Bronze ingestion | Completed |
 | nb_03_build_silver.ipynb | Silver transformation | Completed |
-| nb_04_build_gold.ipynb | Gold dimensional model | In Progress |
+| nb_04_build_gold.ipynb | Gold dimensional model | Completed |
 
 ---
 
@@ -89,18 +89,31 @@ Outputs
 
 ---
 
-## nb_04_build_gold.ipynb
+### `nb_04_build_gold.ipynb`
 
-Status: **In Progress**
+Status: **Completed**
 
-Completed outputs:
+The Gold notebook creates four dimensions and three fact tables.
+
+Dimensions:
 
 - `dim_date`;
 - `dim_customer`;
 - `dim_product`;
-- `dim_seller`;
-- `audit_gold_dimension_load`.
+- `dim_seller`.
 
-The notebook currently generates deterministic surrogate keys, enriches customer and seller geography, materializes product attributes and validates dimensional uniqueness.
+Facts:
 
-Fact tables are still pending.
+- `fact_order`;
+- `fact_order_item`;
+- `fact_payment`.
+
+The notebook implements:
+
+- deterministic surrogate keys;
+- explicit fact-table grains;
+- independent order-level aggregation;
+- fact-to-dimension key mapping;
+- relationship validation;
+- financial reconciliation;
+- dimension, fact and run-level audit logging.

@@ -18,7 +18,7 @@ Current diagrams include
 | Landing | Completed |
 | Bronze | Completed |
 | Silver | Completed |
-| Gold | Planned |
+| Gold | Completed |
 
 ---
 

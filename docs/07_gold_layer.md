@@ -155,3 +155,118 @@ Results are stored in:
 ![Seller dimension](../screenshots/07-gold-layer/05-seller-dimension.png)
 
 ![Dimension audit](../screenshots/07-gold-layer/06-dimension-audit.png)
+
+
+## Implemented Facts
+
+The completed Gold layer includes:
+
+- `fact_order`;
+- `fact_order_item`;
+- `fact_payment`.
+
+## Order Fact
+
+`fact_order` contains one row per order.
+
+It combines independently aggregated item, payment and review information with order lifecycle attributes.
+
+Measures include:
+
+- order GMV;
+- freight value;
+- total order value;
+- item count;
+- distinct product and seller counts;
+- payment value;
+- payment-record count;
+- review count;
+- average and latest review score;
+- delivery and delay measures.
+
+## Order-Item Fact
+
+`fact_order_item` contains one row per:
+
+```text
+order_id + order_item_id
+```
+
+It includes:
+
+- customer key;
+- product key;
+- seller key;
+- order-date key;
+- item price;
+- freight value;
+- item total value;
+- freight-to-price ratio.
+
+### Payment Fact
+
+`fact_payment` contains one row per:
+
+order_id + payment_sequence
+
+It contains payment method, instalment behaviour and payment value.
+
+### Fact Separation
+
+Order items and payment records remain in separate fact tables.
+
+A direct item-payment join could multiply records when an order has multiple items and multiple payment rows.
+
+Keeping separate grains protects GMV, freight and payment measures from double counting.
+
+### Gold Relationship Validation
+
+All fact-to-dimension relationships are tested using surrogate keys.
+
+The framework validates:
+
+- order-to-customer;
+- order-to-date;
+- item-to-customer;
+- item-to-product;
+- item-to-seller;
+- item-to-date;
+- payment-to-customer;
+- payment-to-date.
+
+Results are stored in:
+
+- `audit_gold_relationship`.
+
+### Financial Reconciliation
+
+The Gold framework reconciles:
+
+- Silver item GMV to Gold item GMV;
+- Silver freight to Gold freight;
+- Silver payments to Gold payments;
+- item-fact GMV to order-fact GMV;
+- payment-fact totals to order-fact payment totals.
+
+Results are stored in:
+
+- `audit_gold_reconciliation`.
+
+### Gold Audit Tables
+
+Operational metadata is stored in:
+
+- audit_gold_dimension_load;
+- audit_gold_fact_load;
+- audit_gold_relationship;
+- audit_gold_reconciliation;
+- audit_gold_run_history.
+
+### Evidence
+
+### Result
+
+The completed Gold layer provides a validated star schema consisting of four dimensions and three fact tables.
+
+The tables are ready for the Microsoft Fabric Power BI semantic model.
+
