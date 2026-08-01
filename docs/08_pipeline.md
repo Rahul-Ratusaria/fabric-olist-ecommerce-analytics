@@ -6,17 +6,19 @@ Automate execution of the complete analytics platform.
 
 The pipeline replaces manual notebook execution.
 
+The pipeline currently orchestrates five notebook activities.
+
 Pipeline Flow
 
 Landing
 
 ↓
 
-Bronze
+Profiling
 
 ↓
 
-Profiling
+Bronze
 
 ↓
 
@@ -35,6 +37,14 @@ Gold
 - retry support;
 - production readiness.
 
-Status
+Notebook activities execute sequentially using Success dependencies.
 
-In Progress
+The orchestration layer will later be extended with monitoring and scheduling.
+
+## Evidence
+
+![Pipeline](../screenshots/08-pipeline/01-pipeline-design.png)
+
+![Notebook Properties](../screenshots/08-pipeline/02-notebook-properties.png)
+
+![Dependencies](../screenshots/08-pipeline/03-dependency-view.png)

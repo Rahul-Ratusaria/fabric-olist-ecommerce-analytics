@@ -12,11 +12,11 @@ Landing
 
 ↓
 
-Bronze
+Profiling
 
 ↓
 
-Profiling
+Bronze
 
 ↓
 
@@ -34,6 +34,21 @@ The pipeline guarantees:
 - execution history;
 - future scheduling support.
 
-Status
+## Current Pipeline
 
-In Progress
+The current orchestration contains five sequential notebook activities.
+
+Activities
+
+1. Landing
+2. Bronze
+3. Profiling
+4. Silver
+5. Gold
+
+Each activity executes only after the previous activity succeeds.
+
+Retry Policy
+
+- Retries: 2
+- Retry Interval: 30 seconds
