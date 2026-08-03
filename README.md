@@ -6,6 +6,10 @@ This project demonstrates production-style data engineering practices including 
 
 ---
 
+## End-to-End Architecture
+
+![End-to-end Microsoft Fabric architecture](architecture/images/end_to_end_architecture.png)
+
 # Project Overview
 
 The objective of this project is to build a complete analytics platform using Microsoft Fabric while following enterprise data engineering best practices.
@@ -87,7 +91,7 @@ fabric-olist-analytics/
 | Bronze Layer | ✅ Completed |
 | Silver Layer | ✅ Completed |
 | Gold Layer | ✅ Completed |
-| Semantic Model | ⏳ Upcoming |
+| Semantic Model | ⏳ In Progress |
 | Power BI Dashboard | ⏳ Upcoming |
 | CI/CD | ⏳ Upcoming |
 

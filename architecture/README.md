@@ -1,5 +1,31 @@
 # Solution Architecture
 
+## End-to-End Architecture
+
+The complete solution integrates source ingestion, automated profiling, Medallion Lakehouse processing, dimensional modelling, pipeline orchestration and business intelligence.
+
+![End-to-end architecture](images/end_to_end_architecture.png)
+
+### Data Flow
+
+```text
+Kaggle
+    ↓
+OneLake Landing
+    ↓
+Source Profiling
+    ↓
+Bronze Delta Tables
+    ↓
+Silver Validated Entities
+    ↓
+Gold Star Schema
+    ↓
+Power BI Semantic Model
+    ↓
+Executive Dashboard
+```
+
 This folder contains architecture diagrams used throughout the project.
 
 Current diagrams include
