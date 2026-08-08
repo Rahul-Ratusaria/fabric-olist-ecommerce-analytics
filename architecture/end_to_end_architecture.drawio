@@ -1,0 +1,130 @@
+<mxfile host="65bd71144e">
+    <diagram id="olist-final" name="End-to-End Architecture">
+        <mxGraphModel dx="1423" dy="679" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="&lt;b&gt;End-to-End Microsoft Fabric Olist Analytics Architecture&lt;/b&gt;&lt;br&gt;&lt;font size=&#39;3&#39; color=&#39;#555555&#39;&gt;Kaggle ingestion • Medallion Lakehouse • data quality • dimensional model • orchestration • Power BI&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;fontSize=24;fontColor=#0B2A66;" parent="1" vertex="1">
+                    <mxGeometry x="260" y="20" width="1080" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="source" value="&lt;b&gt;External Source&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;font size=&#39;5&#39; color=&#39;#20A4F3&#39;&gt;Kaggle&lt;/font&gt;&lt;br&gt;Olist E-Commerce Dataset&lt;br&gt;&lt;br&gt;&lt;b&gt;9 Source CSV Files&lt;/b&gt;&lt;br&gt;customers • sellers • products&lt;br&gt;orders • order_items • payments&lt;br&gt;reviews • geolocation • order_payments" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7F7F7;strokeColor=#555555;fontSize=12;spacing=8;" parent="1" vertex="1">
+                    <mxGeometry x="20" y="120" width="190" height="300" as="geometry"/>
+                </mxCell>
+                <mxCell id="workspace" value="&lt;b&gt;Microsoft Fabric Workspace: fabric-olist-dev&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F4FFFC;strokeColor=#00A99D;fontColor=#0B5D55;fontSize=18;" parent="1" vertex="1">
+                    <mxGeometry x="240" y="100" width="1110" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="pipeline" value="&lt;b&gt;Fabric Data Pipeline — Orchestration&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2FFF2;strokeColor=#2E8B57;fontColor=#146B2E;fontSize=16;verticalAlign=top;" parent="1" vertex="1">
+                    <mxGeometry x="240" y="190" width="1070" height="185" as="geometry"/>
+                </mxCell>
+                <mxCell id="nb1" value="&lt;b&gt;1. NB — Landing&lt;/b&gt;&lt;br&gt;nb_00_ingest_olist&lt;br&gt;&lt;br&gt;Ingest raw CSVs to OneLake" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E8B57;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="280" y="220" width="175" height="105" as="geometry"/>
+                </mxCell>
+                <mxCell id="nb2" value="&lt;b&gt;2. NB — Profile Sources&lt;/b&gt;&lt;br&gt;nb_01_profile_sources&lt;br&gt;&lt;br&gt;Schema &amp; data-quality profiling" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E8B57;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="490" y="220" width="175" height="105" as="geometry"/>
+                </mxCell>
+                <mxCell id="nb3" value="&lt;b&gt;3. NB — Bronze&lt;/b&gt;&lt;br&gt;nb_02_load_bronze&lt;br&gt;&lt;br&gt;Standardized Bronze Delta tables" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E8B57;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="690" y="230" width="175" height="105" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="nb4" target="nb3">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="nb4" target="nb3">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="nb4" value="&lt;b&gt;4. NB — Silver&lt;/b&gt;&lt;br&gt;nb_03_build_silver&lt;br&gt;&lt;br&gt;Clean, validate &amp; transform" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E8B57;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="915" y="230" width="175" height="105" as="geometry"/>
+                </mxCell>
+                <mxCell id="nb5" value="&lt;b&gt;5. NB — Gold&lt;/b&gt;&lt;br&gt;nb_04_build_gold&lt;br&gt;&lt;br&gt;Star schema, reconciliation &amp; audit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2E8B57;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="1130" y="230" width="175" height="105" as="geometry"/>
+                </mxCell>
+                <mxCell id="profile" value="&lt;b&gt;Profiling Framework&lt;/b&gt;&lt;br&gt;&lt;br&gt;Schema profiling&lt;br&gt;Null analysis&lt;br&gt;Duplicate checks&lt;br&gt;Numeric validation&lt;br&gt;Datetime validation&lt;br&gt;Business rules&lt;br&gt;Referential integrity&lt;br&gt;Dataset health overview&lt;br&gt;&lt;br&gt;&lt;b&gt;profile_* Delta tables&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9E8;strokeColor=#E6A700;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="250" y="400" width="200" height="300" as="geometry"/>
+                </mxCell>
+                <mxCell id="onelake" value="&lt;b&gt;OneLake Data Lake / Fabric Lakehouse&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F8FF;strokeColor=#2F80ED;fontColor=#1557A0;fontSize=17;" parent="1" vertex="1">
+                    <mxGeometry x="485" y="400" width="620" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="bronze" value="&lt;b&gt;Bronze Layer&lt;/b&gt;&lt;br&gt;Raw &amp; standardized Delta tables&lt;br&gt;&lt;br&gt;&lt;b&gt;9 bronze_* tables&lt;/b&gt;&lt;br&gt;2 Bronze audit tables" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF6E8;strokeColor=#D97A00;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="490" y="480" width="180" height="175" as="geometry"/>
+                </mxCell>
+                <mxCell id="silver" value="&lt;b&gt;Silver Layer&lt;/b&gt;&lt;br&gt;Validated &amp; cleaned Delta tables&lt;br&gt;&lt;br&gt;&lt;b&gt;10 silver_* tables&lt;/b&gt;&lt;br&gt;9 quarantine tables&lt;br&gt;3 Silver audit tables" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF4FF;strokeColor=#2F80ED;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="690" y="480" width="180" height="175" as="geometry"/>
+                </mxCell>
+                <mxCell id="gold" value="&lt;b&gt;Gold Layer&lt;/b&gt;&lt;br&gt;Dimensional model Delta tables&lt;br&gt;&lt;br&gt;&lt;b&gt;4 Dimensions&lt;/b&gt;&lt;br&gt;&lt;b&gt;3 Facts&lt;/b&gt;&lt;br&gt;5 Gold audit tables" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9E8;strokeColor=#E6A700;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="890" y="480" width="180" height="175" as="geometry"/>
+                </mxCell>
+                <mxCell id="quarantine" value="&lt;b&gt;Quarantine Framework&lt;/b&gt;&lt;br&gt;Invalid records captured with reason codes • source-to-target reconciliation • data-quality monitoring" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF1EA;strokeColor=#F28C45;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="580" y="680" width="390" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="semantic" value="&lt;b&gt;Power BI Semantic Model — Direct Lake&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Dimensions&lt;/b&gt;&lt;br&gt;dim_date • dim_customer • dim_product • dim_seller&lt;br&gt;&lt;br&gt;&lt;b&gt;Facts&lt;/b&gt;&lt;br&gt;fact_order • fact_order_item • fact_payment&lt;br&gt;&lt;br&gt;One-to-many relationships&lt;br&gt;Single-direction filtering&lt;br&gt;Central DAX measure library &amp; KPIs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7F1FF;strokeColor=#7B2CBF;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="1110" y="400" width="240" height="350" as="geometry"/>
+                </mxCell>
+                <mxCell id="pbi" value="&lt;b&gt;Power BI Analytics Report&lt;/b&gt;&lt;br&gt;&lt;br&gt;01 Executive Overview&lt;br&gt;02 Sales &amp; Revenue&lt;br&gt;03 Customer Intelligence&lt;br&gt;04 Operations &amp; Logistics&lt;br&gt;05 Payments &amp; Customer Experience&lt;br&gt;&lt;br&gt;&lt;b&gt;Interactive KPIs, trends, segmentation &amp; business insights&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9E8;strokeColor=#E6A700;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="1380" y="400" width="200" height="350" as="geometry"/>
+                </mxCell>
+                <mxCell id="audit" value="&lt;b&gt;Audit &amp; Validation Framework&lt;/b&gt;&lt;br&gt;Data Quality Checks   •   Referential Integrity   •   Source-to-Target Reconciliation   •   Duplicate Checks   •   Load Audit Logs   •   Aggregate Validation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2FFFF;strokeColor=#159A9C;fontColor=#116466;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="250" y="790" width="1100" height="85" as="geometry"/>
+                </mxCell>
+                <mxCell id="github" value="&lt;b&gt;GitHub Repository&lt;/b&gt;&lt;br&gt;&lt;br&gt;Notebooks (PySpark)&lt;br&gt;SQL scripts&lt;br&gt;Architecture diagrams&lt;br&gt;Documentation&lt;br&gt;Screenshots&lt;br&gt;Power BI artifacts&lt;br&gt;&lt;br&gt;Version control &amp; portfolio documentation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F7F1FF;strokeColor=#7B2CBF;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="20" y="500" width="190" height="300" as="geometry"/>
+                </mxCell>
+                <mxCell id="benefits" value="&lt;b&gt;Key Benefits&lt;/b&gt;&lt;br&gt;&lt;br&gt;✓ End-to-end Fabric orchestration&lt;br&gt;✓ Profiling before Bronze processing&lt;br&gt;✓ Scalable Medallion architecture&lt;br&gt;✓ Quarantine &amp; audit controls&lt;br&gt;✓ Dimensional analytics model&lt;br&gt;✓ Direct Lake semantic layer&lt;br&gt;✓ Five-page executive Power BI report&lt;br&gt;✓ GitHub version control" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F4FFF0;strokeColor=#5A9E42;fontColor=#245C20;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="1380" y="100" width="200" height="260" as="geometry"/>
+                </mxCell>
+                <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;strokeWidth=2;" parent="1" source="source" target="nb1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e2" value="On Success" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;strokeColor=#2E8B57;" parent="1" source="nb1" target="nb2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e3" value="On Success" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;strokeColor=#2E8B57;" parent="1" source="nb2" target="nb3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e4" value="On Success" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;strokeColor=#2E8B57;" parent="1" edge="1">
+                    <mxGeometry x="-0.8" relative="1" as="geometry">
+                        <mxPoint x="876" y="282.57142857142867" as="sourcePoint"/>
+                        <mxPoint x="926" y="282.57142857142867" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="901" y="283"/>
+                            <mxPoint x="901" y="283"/>
+                        </Array>
+                        <mxPoint x="1" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e5" value="On Success" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;strokeColor=#2E8B57;" parent="1" source="nb4" target="nb5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;" parent="1" source="nb2" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="480" y="290" as="sourcePoint"/>
+                        <mxPoint x="450" y="472.43000000000006" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="480" y="273"/>
+                            <mxPoint x="480" y="472"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;" parent="1" source="profile" target="bronze" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;strokeWidth=2;" parent="1" source="bronze" target="silver" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e9" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;strokeWidth=2;" parent="1" source="silver" target="gold" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e10" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;strokeWidth=2;" parent="1" source="gold" target="semantic" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e11" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;strokeWidth=2;" parent="1" source="semantic" target="pbi" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e12" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;dashed=1;strokeColor=#F28C45;" parent="1" source="profile" target="quarantine" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e13" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=classic;dashed=1;strokeColor=#7B2CBF;" parent="1" source="github" target="pipeline" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
